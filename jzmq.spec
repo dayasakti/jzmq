@@ -40,9 +40,11 @@ This package contains Java Bindings for ZeroMQ related development libraries and
 %setup -q
 
 %build
+export JAVA_HOME=%{java_home}
+./autogen.sh
 %configure
 
-%{__make} %{?_smp_mflags}
+%{__make} -j1
 
 %install
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
@@ -75,6 +77,9 @@ This package contains Java Bindings for ZeroMQ related development libraries and
 %{_libdir}/libjzmq.a
 
 %changelog
+* Sun Sep 08 2013 Daya Sakti <mr_sakti_9@yahoo.com>
+- calls autogen and setup JAVA_HOME prior to calling %configure
+- make to run with single job. parallel jobs seem to fail
 * Thu Dec 09 2010 Alois Belaska <alois.belaska@gmail.com>
 - version of package changed to 2.1.0
 * Tue Sep 21 2010 Stefan Majer <stefan.majer@gmail.com> 
