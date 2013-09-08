@@ -1,6 +1,6 @@
 Name:          jzmq
 Version:       2.1.0
-Release:       1.openjdk7%{?dist}
+Release:       1.oraclejdk7%{?dist}
 Summary:       The Java ZeroMQ bindings
 Group:         Applications/Internet
 License:       LGPLv3+
@@ -8,8 +8,8 @@ URL:           http://www.zeromq.org/
 Source:        http://www.zeromq.org/local--files/area:download/%{name}-%{version}.tar.gz
 Prefix:        %{_prefix}
 Buildroot:     %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, gcc-c++, libstdc++-devel, java-1.7.0-openjdk-devel , zeromq-devel = 2.1.7
-Requires:      libstdc++, zeromq, java-1.7.0-openjdk, zeromq = 2.1.7
+BuildRequires: gcc, make, gcc-c++, libstdc++-devel, jdk >= 1.7.0 , zeromq-devel = 2.1.7
+Requires:      libstdc++, zeromq, jdk >= 1.7.0, zeromq = 2.1.7
 
 %description
 The 0MQ lightweight messaging kernel is a library which extends the
@@ -40,7 +40,7 @@ This package contains Java Bindings for ZeroMQ related development libraries and
 %setup -q
 
 %build
-export JAVA_HOME=%{java_home}
+export JAVA_HOME=/usr/java/default
 ./autogen.sh
 %configure
 
